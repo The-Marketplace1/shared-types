@@ -1,0 +1,53 @@
+version: 2
+
+updates:
+  # ── npm / pnpm workspace ─────────────────────────────────────────────────────
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: UTC
+    open-pull-requests-limit: 10
+    groups:
+      typescript:
+        patterns:
+          - typescript
+          - '@types/*'
+      zod:
+        patterns:
+          - zod
+      drizzle:
+        patterns:
+          - drizzle-orm
+          - drizzle-kit
+      express:
+        patterns:
+          - express
+          - '@types/express'
+          - cors
+          - '@types/cors'
+          - cookie-parser
+          - '@types/cookie-parser'
+      pino:
+        patterns:
+          - pino
+          - pino-http
+          - pino-pretty
+          - esbuild-plugin-pino
+      build-tools:
+        patterns:
+          - esbuild
+          - tsx
+          - vite
+
+  # ── GitHub Actions ───────────────────────────────────────────────────────────
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: UTC
+    open-pull-requests-limit: 5

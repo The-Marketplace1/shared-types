@@ -1,0 +1,33 @@
+# Dependencies — reinstalled inside the image
+node_modules
+**/node_modules
+
+# Build artefacts
+dist
+**/dist
+*.tsbuildinfo
+
+# pnpm cache & store
+.cache
+.local/share/pnpm
+
+# Test & coverage
+coverage
+**/.vitest
+
+# Editor & OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# CI
+.github
+
+# Lock files — pnpm-lock.yaml IS kept (used in pnpm install --frozen-lockfile)
+package-lock.json
+yarn.lock
