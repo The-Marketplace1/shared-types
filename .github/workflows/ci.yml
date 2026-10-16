@@ -71,7 +71,7 @@ jobs:
         run: pnpm run build
 
       - name: Upload api-server build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-server-dist
           path: artifacts/api-server/dist/
