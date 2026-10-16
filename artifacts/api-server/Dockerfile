@@ -11,10 +11,11 @@ WORKDIR /workspace
 COPY package.json pnpm-workspace.yaml .npmrc ./
 COPY tsconfig.base.json tsconfig.json ./
 
-COPY lib/db/package.json            lib/db/
-COPY lib/shared-sdk/package.json    lib/shared-sdk/
-COPY scripts/package.json           scripts/
-COPY artifacts/api-server/package.json artifacts/api-server/
+# Explicitly define full file destinations to prevent Docker from creating files instead of directories
+COPY lib/db/package.json            lib/db/package.json
+COPY lib/shared-sdk/package.json    lib/shared-sdk/package.json
+COPY scripts/package.json           scripts/package.json
+COPY artifacts/api-server/package.json artifacts/api-server/package.json
 
 RUN pnpm install --frozen-lockfile
 
