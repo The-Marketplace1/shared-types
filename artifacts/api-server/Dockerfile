@@ -8,20 +8,18 @@ WORKDIR /workspace
 
 # Copy workspace manifests first — Docker layer-caches these separately from
 # source code so a source-only change does not re-run pnpm install.
-COPY package.json pnpm-workspace.yaml .npmrc ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY tsconfig.base.json tsconfig.json ./
 
 # Explicitly define full file destinations to prevent Docker from creating files instead of directories
 COPY lib/db/package.json            lib/db/package.json
 COPY lib/shared-sdk/package.json    lib/shared-sdk/package.json
-COPY scripts/package.json           scripts/package.json
 COPY artifacts/api-server/package.json artifacts/api-server/package.json
 
 RUN pnpm install --frozen-lockfile
 
 # Copy all source files
 COPY lib/       lib/
-COPY scripts/   scripts/
 COPY artifacts/api-server/ artifacts/api-server/
 
 # Build only the api-server (shared-sdk is source-linked, no separate build step)
